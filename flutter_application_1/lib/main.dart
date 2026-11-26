@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
  
 void main() {
   runApp(const MyApp()
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 onPressed: isEmpty ? null : decrement,
               style: TextButton.styleFrom(
-                backgroundColor:isEmpty ? Colors.blue.withOpacity(0.2) : Colors.blue,
+                backgroundColor:isEmpty ? Colors.blue.withValues(alpha: 0.2) : Colors.blue,
                 fixedSize: const Size(100, 100),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
  
               TextButton(onPressed:isFull ? null : increment,
               style: TextButton.styleFrom(
-                backgroundColor:isFull ? Colors.blue.withOpacity(0.2) : Colors.blue,
+                backgroundColor:isFull ? Colors.blue.withValues(alpha: 0.2) : Colors.blue,
                 fixedSize: const Size(100, 100),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),

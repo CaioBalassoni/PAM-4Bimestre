@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   runApp(MaterialApp(home: Home(),
@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
   void _calcular(){
     setState(() {
       double weight = double.parse(weigetController.text);
-      double height = double.parse(heigetController.text);
+      double height = double.parse(heigetController.text) / 100;
       double imc = weight / (height * height);
 
       if (imc < 18.6){
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
         _infoText = "Obesidade grau I (${imc.toStringAsPrecision(4)})";
       }else if (imc >= 34.9 && imc < 39.9){
         _infoText = "Obesidade grau II (${imc.toStringAsPrecision(4)})";
-      }else {
+      }else if (imc >= 40){
         _infoText = "Obesidade grau III (${imc.toStringAsPrecision(4)})";
       }
     });
@@ -92,7 +92,7 @@ class _HomeState extends State<Home> {
             controller: heigetController
           ),
           Padding(padding: EdgeInsets.only(top: 10, bottom: 10),
-          child: Container(
+          child: SizedBox(
             height: 40.0,
             child: ElevatedButton(
               onPressed: _calcular,
