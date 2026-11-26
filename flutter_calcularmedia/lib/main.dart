@@ -30,27 +30,40 @@ class _HomeState extends State<Home> {
     nota4Controller.text = "";
     
     setState(() {
-      _infoText = "Informe suas quatro notas: ";
+      _infoText = "Informe suas quatro notas ";
     });
   }
 
-  void _calcular(){
+  void _calcular(){ 
     setState(() {
-      double nota1 = double.parse(nota1Controller.text);
-      double nota2 = double.parse(nota2Controller.text);
-      double nota3 = double.parse(nota3Controller.text);
-      double nota4 = double.parse(nota4Controller.text);
-      double media = (nota1 + nota2 + nota3 + nota4) / 4;
+      if (nota1Controller.text == "" || nota2Controller.text == "" || nota3Controller.text == "" || nota4Controller.text == ""){
+          _infoText = "Erro! Informe todas as notas.";
+          return;
+        }
+         
 
-      if (media <= 5){
-        _infoText = "Você tirou R. Precisa estudar muito!";
-      }else if (media >= 6 && media <= 8){
-        _infoText = "Você tirou B. Precisa estudar um pouco mais!";
-      }else {
-        _infoText = "Você tirou MB. Foi aprovado com excelência!";
+      try{
+        double nota1 = double.parse(nota1Controller.text);
+        double nota2 = double.parse(nota2Controller.text);
+        double nota3 = double.parse(nota3Controller.text);
+        double nota4 = double.parse(nota4Controller.text);
+        double media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+        if (media <= 5){
+          _infoText = "Você tirou R. Precisa estudar muito! \n Nota: (${media.toStringAsPrecision(2)})";
+        }else if (media >= 6 && media <= 8){
+          _infoText = "Você tirou B. Precisa estudar um pouco mais! \n Nota: (${media.toStringAsPrecision(2)})";
+        }else {
+          _infoText = "Você tirou MB. Foi aprovado com excelência! \n Nota: (${media.toStringAsPrecision(2)})";
+        }
       }
+    catch (e){
+      _infoText = "Erro! Informe apenas números."; 
+    }
     });
   }
+
+  
 
     @override
   void dispose() {
